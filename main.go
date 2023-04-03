@@ -49,6 +49,7 @@ func rim(a, b string) (oper string) {
 	if _, err := strconv.Atoi(a); err == nil {
 		fmt.Println("%q looks like a number.\n", b)
 	}
+	// Проверяю являются ли переменные a и b строками, если да-программа возвращает ошибку
 	var res string
 	var carta = map[string]int{
 		"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5,
@@ -73,6 +74,7 @@ func rim(a, b string) (oper string) {
 	if arcarta > 10 {
 		fmt.Println("калькулятор пока что может выполнять операции только с целыми числами от I до X")
 	}
+	//привожу строковые переменные a и b к интовым по ключ-значению и проверяю на больше-меньше
 	for key := range carta {
 		var ress int
 		var arcarta int
