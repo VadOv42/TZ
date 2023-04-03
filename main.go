@@ -99,7 +99,7 @@ func rim(a, b string) (oper string) {
 		var sip int
 		res = ress % 10
 		sip = ress - res
-
+		// Приведенные к интовым строковые переменные разделяю на десятичные и единицы
 		var keys string
 		var keyss string
 		for key, i := range carta {
@@ -112,7 +112,7 @@ func rim(a, b string) (oper string) {
 				}
 				result := keys + keyss
 				fmt.Println(result)
-
+				// цикл ищет ключ по значению и записывет в переменные, после складывает строки и выводит результат
 			}
 		}
 	}
