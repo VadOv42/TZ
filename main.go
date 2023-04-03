@@ -49,7 +49,7 @@ func rim(a, b string) (oper string) {
 	if _, err := strconv.Atoi(a); err == nil {
 		fmt.Println("%q looks like a number.\n", b)
 	}
-	// Проверяю являются ли переменные a и b строками, если да-программа возвращает ошибку
+	// Проверяю являются ли переменные a и b числами, если да-программа возвращает ошибку
 	var res string
 	var carta = map[string]int{
 		"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5,
@@ -99,7 +99,7 @@ func rim(a, b string) (oper string) {
 		var sip int
 		res = ress % 10
 		sip = ress - res
-		// Приведенные к интовым строковые переменные разделяю на десятичные и единицы
+		// Приведенные к интовым строковые переменные разделяю на десятки и единицы
 		var keys string
 		var keyss string
 		for key, i := range carta {
