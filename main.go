@@ -5,123 +5,98 @@ import (
 	"strconv"
 )
 
-/*
-	func arabic(a, b int) int {
-		var oper string
-		fmt.Println("input")
-		fmt.Scan(&a, &oper, &b)
-		var res int
-		if a < 1 {
-			fmt.Println("калькулятор пока что может выполнять операции только с целыми числами от 1 до 10")
-		}
-		if a > 10 {
-			fmt.Println("калькулятор пока что может выполнять операции только с целыми числами от 1 до 10")
-		}
-		if b < 1 {
-			fmt.Println("калькулятор пока что может выполнять операции только с целыми числами от 1 до 10")
-		}
-		if b > 10 {
-			fmt.Println("калькулятор пока что может выполнять операции только с целыми числами от 1 до 10")
-		}
-
-		if oper == "+" {
-			res = a + b
-		}
-		if oper == "-" {
-			res = a - b
-		}
-		if oper == "*" {
-			res = a * b
-		}
-		if oper == "/" {
-			res = a / b
-		}
-		return res
-	}
-*/
-func rim(a, b string) (oper string) {
-	fmt.Println("input")
-	fmt.Scan(&a, &oper, &b)
-	_, err := strconv.Atoi(a)
-	if err != nil {
-		fmt.Println("%q looks like a number.\n", a)
-	}
-	if _, err := strconv.Atoi(a); err == nil {
-		fmt.Println("%q looks like a number.\n", b)
-	}
-	// Проверяю являются ли переменные a и b числами, если да-программа возвращает ошибку
+// main вызывает функцию input, по сути-обработчик
+func input(a, operand, b string) string {
+	fmt.Println("Input")
+	fmt.Scan(&a, &operand, &b)
 	var res string
-	var carta = map[string]int{
-		"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5,
-		"VI": 6, "VII": 7, "VIII": 8, "IX": 9, "X": 10,
-		"XX": 20, "XXX": 30, "XL": 40, "L": 50,
-		"LX": 60, "LXX": 70, "LXXX": 80, "XC": 90,
-		"C": 100}
-	var arcarta int
-	var arcartab int
-	arcarta = carta[a]
-	arcartab = carta[b]
+	num1, err1 := strconv.Atoi(a)
+	num2, err2 := strconv.Atoi(b)
+	if err1 == nil && err2 == nil {
+		if num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10 {
+			fmt.Println("Пожалуйста, используйте два целых числа от 1 до 10")
+		} else {
+			if operand == "+" {
+				f := func(err1 int, err2 int) int { return err1 + err2 }
+				fmt.Println(f(num1, num2))
 
-	if arcarta < 1 {
-		fmt.Println("калькулятор пока что может выполнять операции только с целыми числами от I до X")
-	}
-	if arcartab > 10 {
-		fmt.Println("калькулятор пока что может выполнять операции только с целыми числами от I до X")
-	}
-	if arcartab < 1 {
-		fmt.Println("калькулятор пока что может выполнять операции только с целыми числами от I до X")
-	}
-	if arcarta > 10 {
-		fmt.Println("калькулятор пока что может выполнять операции только с целыми числами от I до X")
-	}
-	//привожу строковые переменные a и b к интовым по ключ-значению и проверяю на больше-меньше
-	for key := range carta {
-		var ress int
+			} else if operand == "-" {
+				f := func(err1 int, err2 int) int { return err1 - err2 }
+				fmt.Println(f(num1, num2))
+
+			} else if operand == "*" {
+				f := func(err1 int, err2 int) int { return err1 * err2 }
+				fmt.Println(f(num1, num2))
+
+			} else if operand == "/" {
+				f := func(err1 int, err2 int) int { return err1 / err2 }
+				fmt.Println(f(num1, num2))
+			}
+		}
+
+	} else if err1 != nil && err2 != nil {
+		var carta = map[string]int{
+			"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5, "VI": 6, "VII": 7, "VIII": 8, "IX": 9, "X": 10,
+			"XX": 20, "XXX": 30, "XL": 40, "L": 50, "LX": 60, "LXX": 70, "LXXX": 80, "XC": 90, "C": 100}
 		var arcarta int
 		var arcartab int
 		arcarta = carta[a]
 		arcartab = carta[b]
-		key = key
-		if oper == "+" {
-			ress = arcarta + arcartab
-		}
-		if oper == "-" {
-			ress = arcarta - arcartab
-		}
-		if oper == "*" {
-			ress = arcarta * arcartab
-		}
-		if oper == "/" {
-			ress = arcarta / arcartab
-		}
 
-		var res int
-		var sip int
-		res = ress % 10
-		sip = ress - res
-		// Приведенные к интовым строковые переменные разделяю на десятки и единицы
-		var keys string
-		var keyss string
-		for key, i := range carta {
-			if i == sip {
-				keys = key
+		if arcarta < 1 {
+			fmt.Println("Пожалуйста, используйте два целых числа от I до X")
+		} else if arcartab > 10 {
+			fmt.Println("Пожалуйста, используйте два целых числа от I до X")
+		} else if arcartab < 1 {
+			fmt.Println("Пожалуйста, используйте два целых числа от I до X")
+		} else if arcarta > 10 {
+			fmt.Println("Пожалуйста, используйте два целых числа от I до X")
+		} else {
+			var ress int
+			var arcarta int
+			var arcartab int
+			for key := range carta {
+				arcarta = carta[a]
+				arcartab = carta[b]
+				key = key
+				if operand == "+" {
+					ress = arcarta + arcartab
+				} else if operand == "-" {
+					ress = arcarta - arcartab
+				} else if operand == "*" {
+					ress = arcarta * arcartab
+				} else if operand == "/" {
+					ress = arcarta / arcartab
+				}
+
+			}
+
+			var res int
+			var sip int
+			res = ress % 10
+			sip = ress - res
+			var keys string
+			var keyss string
+
+			for key, i := range carta {
+				if i == sip {
+					keys = key
+				}
 			}
 			for key, i := range carta {
 				if i == res {
 					keyss = key
 				}
-				result := keys + keyss
-				fmt.Println(result)
-				// цикл ищет ключ по значению и записывет в переменные, после складывает строки и выводит результат
+
 			}
+
+			result := keys + keyss
+			fmt.Println(result)
 		}
 	}
 	return res
 }
-
 func main() {
-	//value := arabic(1, 1)
-	//fmt.Println(value)
-	valuer := rim("", "")
-	fmt.Println(valuer)
+	input("a", "operand", "b")
+
 }
