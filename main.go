@@ -32,6 +32,8 @@ func input(a, operand, b string) string {
 			} else if operand == "/" {
 				f := func(err1 int, err2 int) int { return err1 / err2 }
 				fmt.Println(f(num1, num2))
+			} else {
+				fmt.Println("Некорректный математический оператор")
 			}
 		}
 		// создает карту, ищет значение по ключу
@@ -70,8 +72,13 @@ func input(a, operand, b string) string {
 					ress = arcart_a * arcarta_b
 				} else if operand == "/" {
 					ress = arcart_a / arcarta_b
+				} else {
+					fmt.Println("Некорректный математический оператор")
 				}
 
+			}
+			if ress <= 0 {
+				fmt.Println("Результат меньше или равен единице")
 			}
 
 			var res int
@@ -97,6 +104,8 @@ func input(a, operand, b string) string {
 			fmt.Println(result)
 
 		}
+	} else {
+		fmt.Println("Нельзя считать арабские с римскими")
 	}
 	return res
 }
