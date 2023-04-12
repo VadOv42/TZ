@@ -12,7 +12,7 @@ func input() []string {
 	a := ""
 	fmt.Scan(&a)
 	simvol := strings.Split(a, "")
-
+	// Считаем количество мат операторов, пока что коряво, без функции
 	if strings.Count(a, "+") > 1 || strings.Count(a, "-") > 1 || strings.Count(a, "/") > 1 || strings.Count(a, "*") > 1 {
 		fmt.Println("ошибка")
 
@@ -42,12 +42,11 @@ func input() []string {
 		fmt.Println("ошибка")
 	} else {
 
-		// можно было бы сделать раздельный контроль ввода для арабских и римских, код был бы читабильнее и, работал бы быстрее, но, работает же))
-
-		var num_1 string
-		var math string
-		var num_2 string
-		var lenght = len(simvol)
+		//собираем из массива строки
+		num_1 := ""
+		math := ""
+		num_2 := ""
+		lenght := len(simvol)
 		for k := 0; k < lenght; k++ {
 			if simvol[k] == "+" {
 				math += simvol[k]
@@ -77,7 +76,7 @@ func input() []string {
 
 		num1, err1 := strconv.Atoi(num_1)
 		num2, err2 := strconv.Atoi(num_2)
-		// преобразует в число и считает
+		// преобразуем в число
 		if err1 == nil && err2 == nil {
 			//if len(simvol) > 3 {
 			//	fmt.Println("Пожалуйста, используйте два целых числа от 1 до 10")
@@ -104,15 +103,14 @@ func input() []string {
 					fmt.Println("Некорректный математический оператор")
 				}
 			}
-			// создает карту, ищет значение по ключу
+			// создаем карту
 		} else if err1 != nil && err2 != nil {
 			var carta = map[string]int{
 				"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5, "VI": 6, "VII": 7, "VIII": 8, "IX": 9, "X": 10,
 				"XX": 20, "XXX": 30, "XL": 40, "L": 50, "LX": 60, "LXX": 70, "LXXX": 80, "XC": 90, "C": 100}
-			var arcart_a int
-			var arcarta_b int
-			arcart_a = carta[num_1]
-			arcarta_b = carta[num_2]
+
+			arcart_a := carta[num_1]
+			arcarta_b := carta[num_2]
 
 			if arcart_a < 1 {
 				fmt.Println("Пожалуйста, используйте два целых числа от I до X")
@@ -127,7 +125,6 @@ func input() []string {
 				var arcart_a int
 				var arcarta_b int
 
-				// считает
 				for key := range carta {
 					arcart_a = carta[num_1]
 					arcarta_b = carta[num_2]
@@ -165,12 +162,9 @@ func input() []string {
 					if i == res {
 						keyss = key
 					}
-
 				}
-
 				result := keys + keyss
 				fmt.Println(result)
-
 			}
 		} else {
 			fmt.Println("Нельзя считать арабские с римскими")
