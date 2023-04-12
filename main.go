@@ -22,23 +22,11 @@ func input() []string {
 		fmt.Println("ошибка")
 	} else if strings.Count(a, "+") == 1 && strings.Count(a, "*") == 1 {
 		fmt.Println("ошибка")
-	} else if strings.Count(a, "-") == 1 && strings.Count(a, "+") == 1 {
-		fmt.Println("ошибка")
 	} else if strings.Count(a, "-") == 1 && strings.Count(a, "/") == 1 {
 		fmt.Println("ошибка")
 	} else if strings.Count(a, "-") == 1 && strings.Count(a, "*") == 1 {
 		fmt.Println("ошибка")
-	} else if strings.Count(a, "/") == 1 && strings.Count(a, "+") == 1 {
-		fmt.Println("ошибка")
-	} else if strings.Count(a, "/") == 1 && strings.Count(a, "-") == 1 {
-		fmt.Println("ошибка")
 	} else if strings.Count(a, "/") == 1 && strings.Count(a, "*") == 1 {
-		fmt.Println("ошибка")
-	} else if strings.Count(a, "*") == 1 && strings.Count(a, "+") == 1 {
-		fmt.Println("ошибка")
-	} else if strings.Count(a, "*") == 1 && strings.Count(a, "-") == 1 {
-		fmt.Println("ошибка")
-	} else if strings.Count(a, "*") == 1 && strings.Count(a, "/") == 1 {
 		fmt.Println("ошибка")
 	} else {
 
