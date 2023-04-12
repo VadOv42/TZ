@@ -12,6 +12,7 @@ func input() []string {
 	a := ""
 	fmt.Scan(&a)
 	simvol := strings.Split(a, "")
+
 	if strings.Count(a, "+") > 1 || strings.Count(a, "-") > 1 || strings.Count(a, "/") > 1 || strings.Count(a, "*") > 1 {
 		fmt.Println("ошибка")
 
@@ -40,9 +41,42 @@ func input() []string {
 	} else if strings.Count(a, "*") == 1 && strings.Count(a, "/") == 1 {
 		fmt.Println("ошибка")
 	} else {
+
 		// можно было бы сделать раздельный контроль ввода для арабских и римских, код был бы читабильнее и, работал бы быстрее, но, работает же))
-		num1, err1 := strconv.Atoi(simvol[0])
-		num2, err2 := strconv.Atoi(simvol[2])
+
+		var num_1 string
+		var math string
+		var num_2 string
+		var lenght = len(simvol)
+		for k := 0; k < lenght; k++ {
+			if simvol[k] == "+" {
+				math += simvol[k]
+				break
+			} else if simvol[k] == "-" {
+				math += simvol[k]
+				break
+			} else if simvol[k] == "/" {
+				math += simvol[k]
+				break
+			} else if simvol[k] == "*" {
+				math += simvol[k]
+				break
+
+			} else {
+				num_1 += simvol[k]
+			}
+		}
+
+		for k := 0; k < lenght; k++ {
+			if simvol[k] == math {
+				for i := k + 1; i < lenght; i++ {
+					num_2 += simvol[i]
+				}
+			}
+		}
+
+		num1, err1 := strconv.Atoi(num_1)
+		num2, err2 := strconv.Atoi(num_2)
 		// преобразует в число и считает
 		if err1 == nil && err2 == nil {
 			//if len(simvol) > 3 {
@@ -51,7 +85,7 @@ func input() []string {
 			if num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10 {
 				fmt.Println("Пожалуйста, используйте два целых числа от 1 до 10")
 			} else {
-				if simvol[1] == "+" {
+				if math == "+" {
 					f := func(err1 int, err2 int) int { return err1 + err2 }
 					fmt.Println(f(num1, num2))
 
@@ -77,8 +111,8 @@ func input() []string {
 				"XX": 20, "XXX": 30, "XL": 40, "L": 50, "LX": 60, "LXX": 70, "LXXX": 80, "XC": 90, "C": 100}
 			var arcart_a int
 			var arcarta_b int
-			arcart_a = carta[simvol[0]]
-			arcarta_b = carta[simvol[2]]
+			arcart_a = carta[num_1]
+			arcarta_b = carta[num_2]
 
 			if arcart_a < 1 {
 				fmt.Println("Пожалуйста, используйте два целых числа от I до X")
@@ -95,16 +129,16 @@ func input() []string {
 
 				// считает
 				for key := range carta {
-					arcart_a = carta[simvol[0]]
-					arcarta_b = carta[simvol[2]]
+					arcart_a = carta[num_1]
+					arcarta_b = carta[num_2]
 					key = key
-					if simvol[1] == "+" {
+					if math == "+" {
 						ress = arcart_a + arcarta_b
-					} else if simvol[1] == "-" {
+					} else if math == "-" {
 						ress = arcart_a - arcarta_b
-					} else if simvol[1] == "*" {
+					} else if math == "*" {
 						ress = arcart_a * arcarta_b
-					} else if simvol[1] == "/" {
+					} else if math == "/" {
 						ress = arcart_a / arcarta_b
 					} else {
 						fmt.Println("Некорректный математический оператор")
@@ -112,7 +146,7 @@ func input() []string {
 
 				}
 				if ress <= 0 {
-					fmt.Println("Результат меньше или равен единице")
+					fmt.Println("Результат меньше или равен нулю")
 				}
 
 				var res int
